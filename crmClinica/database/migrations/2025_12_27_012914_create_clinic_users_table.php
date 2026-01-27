@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('clinic_users', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')
+            $table->ulid('id')->primary();
+            $table->foreignUlid('user_id')
                     ->constrained('users')
                     ->cascadeOnDelete();
-            $table->foreignId('clinic_id')
+            $table->foreignUlid('clinic_id')
                     ->constrained('clinics')
                     ->cascadeOnDelete();
             $table->string('clinic_role');

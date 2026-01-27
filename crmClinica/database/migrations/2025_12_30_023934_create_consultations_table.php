@@ -12,17 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('consultations', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('clinic_id')
+            $table->ulid('id')->primary();
+            $table->foreignUlid('clinic_id')
                 ->constrained('clinics')
                 ->cascadeOnDelete();
-            $table->foreignId('patient_id') //quem vai ser consultado
+            $table->foreignUlid('patient_id') //quem vai ser consultado
                 ->constrained('patients')
                 ->cascadeOnDelete();
-            $table->foreignId('doctor_usuario_id')
+            $table->foreignUlid('doctor_user_id')
                 ->constrained('users')
                 ->cascadeOnDelete();
-            $table->foreignId('scheduled_by_contact_id') //quem marcou
+            $table->foreignUlid('scheduled_by_contact_id') //quem marcou
                 ->constrained('patients_contacts')
                 ->cascadeOnDelete();
             $table->dateTime('start_at', precision: 0);
