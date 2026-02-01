@@ -3,6 +3,6 @@
  
     <h2>Home</h2>
 
-   <a href="users.index">Users</a>
+   <a href="{{ route('users.index') }}">Users</a>
 
  @endsection

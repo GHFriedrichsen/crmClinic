@@ -16,10 +16,10 @@ Route::get('/login', function() {
 
 
 //tabela users -- teste, logo irei mudar para resource
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
-Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
-Route::post('/users/{user}', [UserController::class, 'show'])->name('users.show');
-Route::post('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
-Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+Route::get('/users', [UserController::class, 'index'])->name('users.index'); //mostra todos
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create'); //form para pegar os dados
+Route::post('/users', [UserController::class, 'store'])->name('users.store'); //salva no baco
+Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show'); // mostra melhor os dados de um user especifico
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit'); // pega os dados do user para editar
+Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update'); // edita no banco
+Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy'); // apaga do banco

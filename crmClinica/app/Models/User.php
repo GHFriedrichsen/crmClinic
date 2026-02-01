@@ -18,6 +18,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'nascimento',
     ];
 
     protected $hidden = [
@@ -25,6 +26,9 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $casts = [
+        'nascimento'=> 'date',
+    ];
     public function clinics()
     {
         return $this->belongsToMany(Clinic::class, 'clinic_users')
