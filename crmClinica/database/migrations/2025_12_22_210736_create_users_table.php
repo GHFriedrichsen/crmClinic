@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('name', 60);
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('role')->default('user');
+            $table->string('role')->default('userUnregister');
             $table->date('nascimento');
             $table->timestamps();
         });
