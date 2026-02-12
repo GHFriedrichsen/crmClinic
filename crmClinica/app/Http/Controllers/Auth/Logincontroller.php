@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class Logincontroller extends Controller
 {
@@ -33,10 +35,10 @@ class Logincontroller extends Controller
             }
 
             if ($user->role === "superAdmin") {
-                return redirect()->intended(route("users.index"));
+                return redirect()->intended(route("admin.users.index"));
             }
 
-            return redirect()->intended(route('dashboard'));
+            return redirect()->intended(route('clients.dashboard'));
         }
 
 
@@ -44,6 +46,26 @@ class Logincontroller extends Controller
         return back()->withErrors([
             'email' => 'Algo deu errado tente novamente!!',
         ])->onlyInput('email');
+    }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6',
+            'nascimento' => 'required|date',
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'nascimento' => $request->nascimento,
+            // 'role' será 'userUnregister' por padrão conforme a migration
+        ]);
+
+        return redirect()->route('login')->with('success', 'Conta criada com sucesso! Aguarde a aprovação do administrador.');
     }
 
     public function logout(Request $request)

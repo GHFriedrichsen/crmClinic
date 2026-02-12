@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts/masterAdmin')
 
 @section('content')
 <h2>Create</h2>
@@ -16,7 +16,7 @@
 </div>
 @endif
 <!-- pega mensagem da controller se tiver ela mostra pra o usuario -->
-<form action="{{ route('users.store') }}" method="post">
+<form action="{{ route('admin.users.store') }}" method="post">
     @csrf
 
     <div class="form-floating mb-3">

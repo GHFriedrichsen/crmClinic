@@ -3,12 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Clinic extends Model
 {
-    use HasUlids;
+    use HasFactory, HasUlids;
+
     public $incrementing = false;
+
     protected $keyType = 'string';
 
     protected $fillable = [
@@ -33,5 +36,4 @@ class Clinic extends Model
     {
         return $this->belongsTo(Consultation::class);
     }
-
 }
